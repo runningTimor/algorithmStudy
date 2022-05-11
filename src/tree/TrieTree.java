@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class TrieTree {
@@ -121,12 +122,13 @@ public class TrieTree {
 
     public static void main(String[] arsg) {
         String[] words = new String[]{"apple", "hard","man","god","godman","godless"};
+
         TrieNode.Trie trie = new TrieNode.Trie();
         for (String s : words){
             trie.insert(s);
         }
-        trie.delete("god");
-        int longestWord = trie.search("god");
-        System.out.println(longestWord);
+        trie.delete("godl");
+        int longestWordCount = trie.search("god");
+        System.out.println(longestWordCount);
     }
 }
