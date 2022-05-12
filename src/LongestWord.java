@@ -1,9 +1,7 @@
-package tree;
-
 import java.util.Arrays;
 import java.util.HashSet;
 
-public class Test {
+public class LongestWord {
 
     public static HashSet<String> wordSet;
 
