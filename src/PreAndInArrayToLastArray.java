@@ -8,13 +8,18 @@ public class PreAndInArrayToLastArray {
 
     public static void lastArray(int preIndexStart, int preIndexEnd, int inIndexStart, int inIndexEnd,
                                  int lastIndexStart, int lastIndexEnd) {
-        int length =lastIndexEnd-lastIndexStart;
+        int length =lastIndexEnd-lastIndexStart+1;
         if (length==0){
             return;
         }
         lastArray[lastIndexEnd] = preArray[preIndexStart];
         //找到前序遍历数组第一个元素在中序遍历数组中的索引
-        int index = 1;
+        int index = 0;
+        for (;index<length;index++){
+            if (inArray[inIndexStart+index]==preArray[preIndexStart]){
+                break;
+            }
+        }
         //对左子树进行递归
         lastArray(preIndexStart+1,preIndexStart+index,inIndexStart,inIndexStart+index-1,
                 lastIndexStart,lastIndexStart+index-1);
