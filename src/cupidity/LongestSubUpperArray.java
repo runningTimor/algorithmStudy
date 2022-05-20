@@ -1,3 +1,5 @@
+package cupidity;
+
 /**
  * 最长的递增子序列长度
  */
