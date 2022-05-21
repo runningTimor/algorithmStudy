@@ -25,11 +25,11 @@ public class Graph {
         }
 
         for (int i = 0; i < m; i++) {
-            Node fromNode = graph.nodeMap.get(i);
+            Node toNode = graph.nodeMap.get(i);
             for (int j = 2; j < matrix[0].length; j++) {
                 if (matrix[i][j] != 0) {
-                    Node toNode = graph.nodeMap.get(j - 2);
-                    Edge edge = new Edge(1, fromNode, toNode);
+                    Node fromNode = graph.nodeMap.get(j - 2);
+                    Edge edge = new Edge(1,fromNode, toNode);
                     graph.edges.add(edge);
                     fromNode.nodes.add(toNode);
                     fromNode.edges.add(edge);
@@ -109,7 +109,7 @@ public class Graph {
                 {3, 3500, 0, 0, 0, 0, 0, 0, 0, 0},
         };
         Graph graph = generateGraph(matrix);
-        dfs(graph.nodeMap.get(0));
+        bfs(graph.nodeMap.get(7));
 
     }
 
