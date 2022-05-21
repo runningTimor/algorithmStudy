@@ -98,7 +98,7 @@ public class MinMoney {
 
 
     public static void main(String[] args) {
-        System.out.println(dp(2, 10, 1, 0, 10));
+        System.out.println(dp(2, 10, 1, 0, 1000));
     }
 
 }
