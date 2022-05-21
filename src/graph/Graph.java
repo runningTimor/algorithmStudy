@@ -65,6 +65,36 @@ public class Graph {
         }
     }
 
+    //图的深度优先遍历（使用栈结构）
+    public static void dfs(Node node){
+        if (node==null){
+            return;
+        }
+        Stack<Node> stack = new Stack();
+        HashSet set = new HashSet();
+        stack.add(node);
+        set.add(node);
+        //todo 打印或者处理
+        System.out.println(node.value);
+
+        while (!stack.isEmpty()){
+            Node current = stack.pop();
+            for (Node toNode :current.nodes){
+                if (!set.contains(toNode)){
+                    stack.push(current);
+                    stack.push(toNode);
+                    set.add(toNode);
+                    //todo 打印或者处理
+                    System.out.println(toNode.value);
+                    break;
+                }
+            }
+
+        }
+
+
+
+    }
 
 
     public static void main(String[] args) {
@@ -79,7 +109,8 @@ public class Graph {
                 {3, 3500, 0, 0, 0, 0, 0, 0, 0, 0},
         };
         Graph graph = generateGraph(matrix);
-        bfs(graph.nodeMap.get(0));
+        dfs(graph.nodeMap.get(0));
+
     }
 
 
