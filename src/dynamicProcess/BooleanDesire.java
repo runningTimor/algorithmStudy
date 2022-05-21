@@ -39,7 +39,11 @@ public class BooleanDesire {
 
     public static int getWays(int L, int R, boolean desire, String express) {
         if (L == R) {
-            return desire ? (express.charAt(L) == '1' ? 1 : 0) : express.charAt(L) == '0' ? 1 : 0;
+            if (express.charAt(L) == '1') {
+                return desire ? 1 : 0;
+            } else {
+                return desire ? 0 : 1;
+            }
         }
 
         //每个符号最后组合
@@ -80,11 +84,60 @@ public class BooleanDesire {
         return ans;
     }
 
+    //改动态规划
+    public static int dp(String express, boolean desire) {
+        int length = express.length();
+        int[][] trueMap = new int[length][length];
+        int[][] falseMap = new int[length][length];
+        for (int L = 0; L < length; L += 2) {
+            trueMap[L][L] = express.charAt(L) == '1' ? 1 : 0;
+            falseMap[L][L] = express.charAt(L) == '0' ? 1 : 0;
+        }
+
+        for (int L = length - 3; L >= 0; L -= 2) {
+            for (int R = L + 2; R < length; R += 2) {
+                for (int index = L + 1; index < R; index += 2) {
+                    switch (express.charAt(index)) {
+                        case '&':
+                            trueMap[L][R] += trueMap[L][index - 1] * trueMap[index + 1][R];
+                            break;
+                        case '|':
+                            trueMap[L][R] += trueMap[L][index - 1] * trueMap[index + 1][R];
+                            trueMap[L][R] += trueMap[L][index - 1] * falseMap[index + 1][R];
+                            trueMap[L][R] += falseMap[L][index - 1] * trueMap[index + 1][R];
+                            break;
+                        case '^':
+                            trueMap[L][R] += trueMap[L][index - 1] * falseMap[index + 1][R];
+                            trueMap[L][R] += falseMap[L][index - 1] * trueMap[index + 1][R];
+                            break;
+                    }
+                    switch (express.charAt(index)) {
+                        case '&':
+                            falseMap[L][R] += falseMap[L][index - 1] * falseMap[index + 1][R];
+                            falseMap[L][R] += falseMap[L][index - 1] * trueMap[index + 1][R];
+                            falseMap[L][R] += trueMap[L][index - 1] * falseMap[index + 1][R];
+                            break;
+                        case '|':
+                            falseMap[L][R] += falseMap[L][index - 1] * falseMap[index + 1][R];
+                            break;
+                        case '^':
+                            falseMap[L][R] += trueMap[L][index - 1] * falseMap[index + 1][R];
+                            falseMap[L][R] += falseMap[L][index - 1] * trueMap[index + 1][R];
+                            break;
+                    }
+                }
+            }
+        }
+        return desire ? trueMap[0][length - 1] : falseMap[0][length - 1];
+    }
+
+
     public static void main(String[] args) {
-//        String express = "1^0|0|1";
-        String express = "1";
-        int way = ways(express, false);
-        System.out.println(way);
+        String express = "1^0|0";
+//        String express = "1";
+        int way1 = ways(express, false);
+        int way2 = dp(express, false);
+        System.out.println(way1 == way2);
     }
 
 }
