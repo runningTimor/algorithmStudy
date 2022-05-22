@@ -121,8 +121,8 @@ public class BooleanDesire {
                             falseMap[L][R] += falseMap[L][index - 1] * falseMap[index + 1][R];
                             break;
                         case '^':
-                            falseMap[L][R] += trueMap[L][index - 1] * falseMap[index + 1][R];
-                            falseMap[L][R] += falseMap[L][index - 1] * trueMap[index + 1][R];
+                            falseMap[L][R] += trueMap[L][index - 1] * trueMap[index + 1][R];
+                            falseMap[L][R] += falseMap[L][index - 1] * falseMap[index + 1][R];
                             break;
                     }
                 }
@@ -133,7 +133,7 @@ public class BooleanDesire {
 
 
     public static void main(String[] args) {
-        String express = "1^0|0";
+        String express = "1^0|0|1";
 //        String express = "1";
         int way1 = ways(express, false);
         int way2 = dp(express, false);
