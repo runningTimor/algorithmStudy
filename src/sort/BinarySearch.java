@@ -1,7 +1,5 @@
 package sort;
 
-import com.sun.org.apache.xml.internal.serializer.ElemDesc;
-
 //有序数组二分查找
 public class BinarySearch {
 
@@ -38,14 +36,14 @@ public class BinarySearch {
     //array数组无序，相邻的数一定不相等
     public static int findLocalMin(int[] array, int startIndex, int EndIndex) {
         int midIndex = startIndex + ((EndIndex - startIndex) >> 1);
-        if (array[midIndex]<array[midIndex+1]&&array[midIndex]<array[midIndex-1]){
+        if (array[midIndex] < array[midIndex + 1] && array[midIndex] < array[midIndex - 1]) {
             return array[midIndex];
-        }else {
-            if (array[midIndex-1]<array[midIndex]){
-                return findLocalMin(array,startIndex,midIndex);
-            }else {
+        } else {
+            if (array[midIndex - 1] < array[midIndex]) {
+                return findLocalMin(array, startIndex, midIndex);
+            } else {
 
-            return findLocalMin(array,midIndex,EndIndex);
+                return findLocalMin(array, midIndex, EndIndex);
             }
         }
 
@@ -56,7 +54,7 @@ public class BinarySearch {
         int[] array = {4, 3, 2, 1, -1, 10};
 //        System.out.println(searchIndex(array, 5, 0, array.length - 1));
 //        System.out.println(searchNearestIndex(array, 5, 0, array.length - 1));
-        System.out.println(findLocalMin(array,0,array.length-1));
+        System.out.println(findLocalMin(array, 0, array.length - 1));
 
     }
 }
