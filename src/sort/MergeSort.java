@@ -1,6 +1,7 @@
 package sort;
 
-public class NLogNSort {
+//归并排序
+public class MergeSort {
 
     public static void mergeSort(int[] array, int left, int right) {
         if (left == right) {
@@ -44,7 +45,7 @@ public class NLogNSort {
         res += getSmallSum(array, left, mid);
         res += getSmallSum(array, mid + 1, right);
         //合并过程发现的逆序对
-        res += mergePair(array,left,right,mid);
+        res += mergePair(array, left, right, mid);
         return res;
     }
 
@@ -77,8 +78,8 @@ public class NLogNSort {
     }
 
     public static void main(String[] args) {
-        int[] array = {9, 8, 7, 6, 5, 4, 3, 2, 1,2};
+        int[] array = {9, 8, 7, 6, 5, 4, 3, 2, 1, 2};
 //        mergeSort(array, 0, array.length - 1);
-        System.out.println(getSmallSum(array,0,array.length-1));
+        System.out.println(getSmallSum(array, 0, array.length - 1));
     }
 }
