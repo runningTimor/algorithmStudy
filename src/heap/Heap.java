@@ -1,7 +1,5 @@
 package heap;
 
-import java.util.Arrays;
-
 //用数组实现堆结构
 public class Heap {
 
@@ -15,7 +13,7 @@ public class Heap {
     }
 
     //从index开始向下调整堆结构
-    public static void heapPop(int[] array, int index, int heapSize) {
+    public static void heapfiy(int[] array, int index, int heapSize) {
         int leftChild = 2 * index + 1;
         while (leftChild < heapSize) {
 
@@ -49,7 +47,7 @@ public class Heap {
         int heapSize = array.length;
         while (heapSize > 0) {
             swap(array, 0, --heapSize);
-            heapPop(array, 0, heapSize);
+            heapfiy(array, 0, heapSize);
         }
     }
 
@@ -67,7 +65,7 @@ public class Heap {
         while (heapSize > 0) {
             System.out.println(heap[0]);
             swap(heap, 0, --heapSize);
-            heapPop(heap, 0, heapSize);
+            heapfiy(heap, 0, heapSize);
         }
     }
 
