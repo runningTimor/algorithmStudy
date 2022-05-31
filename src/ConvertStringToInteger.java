@@ -46,7 +46,7 @@ public class ConvertStringToInteger {
             throw new RuntimeException("不能转换！");
         }
         char[] chars = s.toCharArray();
-        boolean isNeg = chars[0] == '-' ? true : false;
+        boolean isNeg = chars[0] == '-';
         //用于判断转换过程是否溢出
         int q = Integer.MIN_VALUE / 10;
         int r = Integer.MIN_VALUE % 10;

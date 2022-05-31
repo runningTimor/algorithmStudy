@@ -6,8 +6,8 @@ import java.util.List;
 //应用“0”，“1”，“&”，“|”，“^“五种符号组成期望的布尔值有多少种方法
 public class BooleanDesire {
 
-    public static final List<String> logicSymbol = Arrays.asList(new String[]{"&", "|", "^"});
-    public static final List<String> numberSymbol = Arrays.asList(new String[]{"0", "1"});
+    public static final List<String> logicSymbol = Arrays.asList("&", "|", "^");
+    public static final List<String> numberSymbol = Arrays.asList("0", "1");
 
     public static boolean valid(String express) {
 

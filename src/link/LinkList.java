@@ -1,7 +1,5 @@
 package link;
 
-import sun.awt.image.ImageWatched;
-
 //链表
 public class LinkList {
 
@@ -58,7 +56,7 @@ public class LinkList {
         //恢复链表(从中间节点开始)
         cur = endNode;
         pre = null;
-        while (cur!=null){
+        while (cur != null) {
             next = cur.next;
             cur.next = pre;
             pre = cur;
@@ -71,20 +69,20 @@ public class LinkList {
 
     public static void main(String[] args) {
 
-         LinkNode node1 = new LinkNode(1);
-         LinkNode node2 = new LinkNode(2);
-         LinkNode node3 = new LinkNode(3);
-         LinkNode node4 = new LinkNode(3);
-         LinkNode node5 = new LinkNode(2);
-         LinkNode node6 = new LinkNode(1);
-         node1.next = node2;
-         node2.next = node3;
-         node3.next = node4;
-         node4.next = node5;
-         node5.next = node6;
-         node6.next = null;
+        LinkNode node1 = new LinkNode(1);
+        LinkNode node2 = new LinkNode(2);
+        LinkNode node3 = new LinkNode(3);
+        LinkNode node4 = new LinkNode(3);
+        LinkNode node5 = new LinkNode(2);
+        LinkNode node6 = new LinkNode(1);
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        node4.next = node5;
+        node5.next = node6;
+        node6.next = null;
 
-         System.out.println(palindromeLinkList(node1));
+        System.out.println(palindromeLinkList(node1));
 
     }
 

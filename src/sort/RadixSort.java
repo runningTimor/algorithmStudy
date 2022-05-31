@@ -65,7 +65,7 @@ public class RadixSort {
 
         int[] array = {1, 2, 5, 4, 6, 9, 8, 7};
         radixSort(array);
-        System.out.println("");
+        System.out.println();
     }
 
 }
