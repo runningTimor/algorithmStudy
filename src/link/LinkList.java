@@ -90,7 +90,6 @@ public class LinkList {
         public LinkNode pre;
         public LinkNode next;
         public int value;
-
         public LinkNode(int value) {
             this.value = value;
         }
