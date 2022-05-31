@@ -87,7 +87,7 @@ public class NotRecursive {
     }
 
     // 二叉树宽度优先遍历，求二叉树最大宽度
-    public static int getMaxBroad(TreeNode head) {
+    public static int getMaxBroad1(TreeNode head) {
         if (head == null) {
             return 0;
         }
@@ -102,26 +102,58 @@ public class NotRecursive {
         while (!queue.isEmpty()) {
             TreeNode current = queue.poll();
 
-            if (currentLevel == nodeLevelMap.get(current)){
+            if (currentLevel == nodeLevelMap.get(current)) {
                 currentLevelNode++;
-            }else {
-                currentLevel +=1;
-                maxBroad = Math.max(maxBroad,currentLevelNode);
+            } else {
+                currentLevel += 1;
+                maxBroad = Math.max(maxBroad, currentLevelNode);
                 currentLevelNode = 1;
             }
-//            System.out.println(current.value);
+            // System.out.println(current.value);
             if (current.leftChild != null) {
                 queue.add(current.leftChild);
-                nodeLevelMap.put(current.leftChild,currentLevel+1);
+                nodeLevelMap.put(current.leftChild, currentLevel + 1);
             }
             if (current.rightChild != null) {
                 queue.add(current.rightChild);
-                nodeLevelMap.put(current.rightChild,currentLevel+1);
+                nodeLevelMap.put(current.rightChild, currentLevel + 1);
             }
         }
-        maxBroad = Math.max(maxBroad,currentLevelNode);
+        maxBroad = Math.max(maxBroad, currentLevelNode);
         return maxBroad;
+    }
 
+    // 不用hashmap方式求解二叉树最大宽度
+    public static int getMaxBroad2(TreeNode head) {
+        if (head == null) {
+            return 0;
+        }
+        int maxBroad = Integer.MIN_VALUE;
+        TreeNode currentLevelEndNode = head;
+        TreeNode nextLevelEndNode = null;
+        int currentLevelNodes = 0;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(head);
+        while (!queue.isEmpty()) {
+            TreeNode currentNode = queue.poll();
+            if (currentNode.leftChild != null) {
+                queue.add(currentNode.leftChild);
+                nextLevelEndNode = currentNode.leftChild;
+            }
+            if (currentNode.rightChild != null) {
+                queue.add(currentNode.rightChild);
+                nextLevelEndNode = currentNode.rightChild;
+            }
+            currentLevelNodes++;
+            // 当前节点是本层最后一个节点
+            if (currentLevelEndNode == currentNode) {
+                currentLevelEndNode = nextLevelEndNode;
+                nextLevelEndNode = null;
+                maxBroad = Math.max(maxBroad, currentLevelNodes);
+                currentLevelNodes = 0;
+            }
+        }
+        return maxBroad;
     }
 
     public static void main(String[] args) {
@@ -132,6 +164,10 @@ public class NotRecursive {
         TreeNode node5 = new TreeNode(5);
         TreeNode node6 = new TreeNode(6);
         TreeNode node7 = new TreeNode(7);
+        TreeNode node8 = new TreeNode(8);
+        TreeNode node9 = new TreeNode(9);
+        TreeNode node10 = new TreeNode(10);
+
         node1.leftChild = node2;
         node1.rightChild = node3;
 
@@ -139,12 +175,18 @@ public class NotRecursive {
         node2.rightChild = node5;
 
         node3.leftChild = node6;
-        node3.rightChild = node7;
+
+        node5.leftChild = node7;
+        node5.rightChild = node8;
+
+        node6.leftChild = node9;
+        node6.rightChild = node10;
 
         // preOrder(node1);
         // inOrder(node1);
-//        lastOrder(node1);
-        System.out.println(getMaxBroad(node1));
+        // lastOrder(node1);
+        System.out.println(getMaxBroad1(node1));
+        System.out.println(getMaxBroad2(node1));
     }
 
 }
