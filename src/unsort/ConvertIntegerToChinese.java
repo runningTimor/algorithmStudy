@@ -1,6 +1,4 @@
-import sun.rmi.server.InactiveGroupException;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
+package unsort;
 
 /**
  * 将整数中文名称打印
