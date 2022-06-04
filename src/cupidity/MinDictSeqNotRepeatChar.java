@@ -18,14 +18,13 @@ public class MinDictSeqNotRepeatChar {
         int minAscaIndex = 0;
         for (int i = 0; i < s.length(); i++) {
             int index = s.charAt(i) - 'a';
-            minAscaIndex = s.charAt(i)<=s.charAt(minAscaIndex)?i:minAscaIndex;
+            minAscaIndex = s.charAt(i) <= s.charAt(minAscaIndex) ? i : minAscaIndex;
             if (--characterCount[index] == 0) {
                 break;
-            } else {
-
             }
         }
-        return s.charAt(minAscaIndex)+process(s.substring(minAscaIndex+1).replace(String.valueOf(s.charAt(minAscaIndex)),""));
+        return s.charAt(minAscaIndex) + process(
+            s.substring(minAscaIndex + 1).replace(String.valueOf(s.charAt(minAscaIndex)), ""));
 
     }
 
