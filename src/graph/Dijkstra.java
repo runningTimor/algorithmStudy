@@ -67,10 +67,9 @@ public class Dijkstra {
         //弹出堆顶元素
         public NodeRecord pop() {
             NodeRecord nodeRecord = new NodeRecord(nodes[0], nodeDistanceMap.get(nodes[0]));
-            nodeIndexMap.put(nodes[0], -1);
-            nodeDistanceMap.remove(nodes[0]);
             swap(0, --heapSize);
-            nodeIndexMap.put(nodes[0], 0);
+            nodeIndexMap.put(nodes[heapSize], -1);
+            nodeDistanceMap.remove(nodes[heapSize]);
             nodes[heapSize] = null;
             heapfiy(0, heapSize);
             return nodeRecord;
