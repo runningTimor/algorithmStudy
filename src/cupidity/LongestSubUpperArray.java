@@ -9,7 +9,7 @@ public class LongestSubUpperArray {
         if (arrays == null || arrays.length == 0) {
             return 0;
         }
-        //长度为i+1的子序列中，最小结尾元素
+        //长度为i+1的递增子序列中，最小结尾元素
         int[] minEnds = new int[arrays.length];
         minEnds[0] = arrays[0];
         //minEnds数组中已经填充最末尾的元素的索引
