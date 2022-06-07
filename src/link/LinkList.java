@@ -1,7 +1,7 @@
 package link;
 
 //链表
-public class LinkList {
+public class LinkList<I extends Number> {
 
     public static LinkNode reverse(LinkNode head) {
         if (head == null || head.next == null) {
