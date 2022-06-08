@@ -26,40 +26,30 @@ public class MonotonicStack {
         Stack<LinkedList<Integer>> monotonicStack = new Stack<>();
         MinNode[] res = new MinNode[array.length];
         for (int i = 0; i < array.length; i++) {
+            //生成栈内的节点信息
+            while (!monotonicStack.isEmpty() && array[i] < array[monotonicStack.peek().getFirst()]) {
+                LinkedList<Integer> linkList = monotonicStack.pop();
+                Integer leftMin = monotonicStack.isEmpty() ? null : monotonicStack.peek().getLast();
+                Integer rightMin = i;
+                while (!linkList.isEmpty()) {
+                    MinNode node = new MinNode(leftMin, rightMin);
+                    res[linkList.pollLast()] = node;
+                }
+            }
             if (monotonicStack.isEmpty() || array[i] > array[monotonicStack.peek().getFirst()]) {
                 LinkedList linkList = new LinkedList();
                 linkList.addLast(i);
                 monotonicStack.push(linkList);
-            } else if (array[i] == array[monotonicStack.peek().getFirst()]) {
-                LinkedList linkList = monotonicStack.peek();
-                linkList.addLast(i);
-            } else {
-                //生成栈内的节点信息
-                while (!monotonicStack.isEmpty() && array[i] < array[monotonicStack.peek().getFirst()]) {
-                    LinkedList<Integer> linkList = monotonicStack.pop();
-                    Integer leftMin = null;
-                    if (!monotonicStack.isEmpty()) {
-                        leftMin = monotonicStack.peek().getLast();
-                    }
-                    Integer rightMin = i;
-                    while (!linkList.isEmpty()) {
-                        MinNode node = new MinNode(leftMin, rightMin);
-                        res[linkList.pollLast()] = node;
-                    }
-                }
-                //将i压入栈
-                i--;
-
+            }
+            if (array[i] == array[monotonicStack.peek().getFirst()]) {
+                monotonicStack.peek().addLast(i);
             }
         }
         //处理栈中剩余的元素
         while (!monotonicStack.isEmpty()) {
             LinkedList<Integer> linkList = monotonicStack.pop();
             Integer rightMin = null;
-            Integer leftMin = null;
-            if (!monotonicStack.isEmpty()) {
-                leftMin = monotonicStack.peek().getLast();
-            }
+            Integer leftMin = monotonicStack.isEmpty() ? null : monotonicStack.peek().getLast();
             while (!linkList.isEmpty()) {
                 MinNode node = new MinNode(leftMin, rightMin);
                 res[linkList.pollLast()] = node;
