@@ -59,10 +59,44 @@ public class MonotonicStack {
 
     }
 
-    public static void main(String[] args) {
-        int[] array = {4,3,5,4,3,3,6,7};
-        getNearestMin(array);
+    //前缀和
+    public static int[] getPreSum(int[] array) {
+        if (array == null || array.length == 0) {
+            return null;
+        }
+        int[] res = new int[array.length];
+        res[0] = array[0];
+        for (int index = 1; index < array.length; index++) {
+            res[index] = res[index - 1] + array[index];
+        }
+        return res;
+    }
 
+    public static int getMaxA(int[] array) {
+        MinNode[] minNodes = getNearestMin(array);
+        int[] preSum = getPreSum(array);
+        int max = Integer.MIN_VALUE;
+        for (int index = 0; index < array.length; index++) {
+            MinNode node = minNodes[index];
+            int sum = 0;
+            //将左右的小值索引为空的处理，方便计算前缀和
+            int L = node.leftMin == null ? 0 : node.leftMin;
+            int R = node.rightMin == null ? array.length - 1 : node.rightMin;
+            if (node.leftMin == null) {
+                sum = node.rightMin == null ? preSum[R] : preSum[R - 1];
+            } else {
+                sum = node.rightMin == null ? preSum[R] - preSum[L] : preSum[R - 1] - preSum[L];
+            }
+            max = Math.max(sum*array[index], max);
+
+        }
+        return max;
+
+    }
+
+    public static void main(String[] args) {
+        int[] array = {4, 3, 5, 4, 3, 3, 6, 7};
+        System.out.print(getMaxA(array));
     }
 
 }
