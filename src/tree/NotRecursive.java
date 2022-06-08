@@ -8,16 +8,6 @@ import java.util.Stack;
 // 非递归方式遍历二叉树
 public class NotRecursive {
 
-    public static class TreeNode {
-        public TreeNode leftChild;
-        public TreeNode rightChild;
-        public int value;
-
-        public TreeNode(int value) {
-            this.value = value;
-        }
-    }
-
     // 前序遍历
     public static void preOrder(TreeNode head) {
         if (head == null) {
