@@ -50,6 +50,6 @@ public class MathOperater {
     }
 
     public static void main(String[] args) {
-        System.out.print(devide(32, 2));
+        System.out.print(devide(31, 2));
     }
 }
