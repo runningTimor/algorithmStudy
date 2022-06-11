@@ -2,67 +2,44 @@ package dynamicProcess;
 
 /**
  * @author renjie
- * @description 组成目标金钱数的最少硬币数
- * @date 2022/6/10 21:08
+ * @description 无限制硬币使用次数，组成目标金额的方法数
+ * @date 2022/6/11 13:08
  */
 public class CoinAim {
 
-    public static int process(int[] coins, int rest, int currentIndex) {
-        if (rest < 0) {
-            return -1;
+    public static int process(int[] coins, int rest, int index) {
+
+        if (index == coins.length) {
+            return rest == 0 ? 1 : 0;
         }
-        if (rest == 0) {
-            return 0;
+        int ways = 0;
+        for (int count = 0; coins[index] * count <= rest; count++) {
+            ways += process(coins, rest - coins[index] * count, index + 1);
         }
-        if (currentIndex == coins.length) {
-            return -1;
-        }
-        int coin1 = process(coins, rest, currentIndex + 1);
-        int coin2 = process(coins, rest - coins[currentIndex], currentIndex + 1);
-        if (coin1 == -1 && coin2 == -1) {
-            return -1;
-        } else {
-            if (coin1 == -1) {
-                return coin2 + 1;
-            }
-            if (coin2 == -1) {
-                return coin1;
-            }
-            return Math.min(coin1, coin2 + 1);
-        }
+        return ways;
     }
 
-    public static int dp(int[] coins, int rest, int currentIndex) {
-        int[][] dp = new int[coins.length + 1][rest + 1];
-        for (int c = 1; c <= rest; c++) {
-            dp[coins.length][c] = -1;
-        }
-        for (int r = coins.length - 1; r >= 0; r--) {
-            for (int c = 1; c <= rest; c++) {
-                int way1 = dp[r + 1][c];
-                int way2 = -1;
+    public static int dp(int[] coins, int rest, int index) {
+        int N = coins.length;
+        int[][] dp = new int[N + 1][rest + 1];
+        dp[N][0] = 1;
+
+        for (int r = N - 1; r >= 0; r--) {
+            for (int c = 0; c <= rest; c++) {
+                dp[r][c] = dp[r + 1][c];
                 if (c - coins[r] >= 0) {
-                    way2 = dp[r + 1][c - coins[r]];
-                }
-                if (way1 == -1 && way2 == -1) {
-                    dp[r][c] = -1;
-                } else {
-                    if (way1 == -1) {
-                        dp[r][c] = way2 + 1;
-                    } else if (way2 == -1) {
-                        dp[r][c] = way1;
-                    } else {
-                        dp[r][c] = Math.min(way1, way2 + 1);
-                    }
+                    dp[r][c] += dp[r][c - coins[r]];
                 }
             }
         }
-        return dp[currentIndex][rest];
+        return dp[0][rest];
     }
 
     public static void main(String[] args) {
-        int[] coins = {1, 2, 3, 4};
-        System.out.print(dp(coins, 5, 0));
-    }
 
+        int[] coins = {1, 2, 3, 5};
+        int aim = 2;
+        System.out.print(process(coins, aim, 0));
+        System.out.print(dp(coins, aim, 0));
+    }
 }
