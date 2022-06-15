@@ -50,7 +50,7 @@ public class BinaryTreeToLinkList {
         current.left = leftTail;
 
         if (rightHead!=null){
-            rightHead.right = current;
+            rightHead.left = current;
         }
         current.right = rightHead;
 

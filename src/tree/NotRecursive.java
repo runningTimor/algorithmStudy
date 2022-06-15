@@ -55,7 +55,7 @@ public class NotRecursive {
         if (head == null) {
             return;
         }
-        // 如果有右树，需要将右树的左边界全部入栈
+        // 首先将整颗树的左边界全部入栈
         TreeNode current = head;
         Stack<TreeNode> stack = new Stack<>();
         while (current != null) {

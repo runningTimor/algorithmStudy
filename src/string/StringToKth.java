@@ -1,4 +1,4 @@
-package unsort;
+package string;
 
 /**
  * a到z是26个英文字母的字典序，现在题目要求按照这个字典序编号，
