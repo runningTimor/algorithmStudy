@@ -50,13 +50,11 @@ public class RadixSort {
 
     //取出一个数字在某进制位上的数字
     public static int getDigitNum(int num, int radix) {
-        int rest = 0;
-        while (radix-- > 0) {
-            rest = num % 10;
+        while (radix > 1) {
             num /= 10;
+            radix--;
         }
-        return rest;
-
+        return num % 10;
     }
 
     public static void main(String[] args) {
