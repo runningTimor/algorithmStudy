@@ -90,6 +90,7 @@ public class Dijkstra {
             if (!nodeIndexMap.containsKey(node)) {
                 nodes[heapSize] = node;
                 nodeIndexMap.put(node, heapSize);
+                nodeDistanceMap.put(node,distance);
                 heapInsert(heapSize++);
             }
             if (inHeap(node)) {
