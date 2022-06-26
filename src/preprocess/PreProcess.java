@@ -1,4 +1,4 @@
-package tree;
+package preprocess;
 
 //预处理
 public class PreProcess {
