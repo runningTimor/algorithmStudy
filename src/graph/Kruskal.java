@@ -25,7 +25,7 @@ public class Kruskal {
             Edge edge = queue.poll();
             Node fromNode = edge.fromNode;
             Node toNode = edge.toNode;
-            if (unionFind.isSameSet(fromNode, toNode)) {
+            if (!unionFind.isSameSet(fromNode, toNode)) {
                 edgeSet.add(edge);
                 unionFind.union(fromNode, toNode);
             }
