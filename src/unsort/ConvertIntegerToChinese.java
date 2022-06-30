@@ -18,9 +18,9 @@ public class ConvertIntegerToChinese {
         int rest = Math.abs(num%yi);
         if (yiWei!=0){
             ans += num1To99(yiWei,false)+"亿";
-        }
-        if (rest<yi/10){
-            ans+= "零";
+            if (rest < yi / 10) {
+                ans += "零";
+            }
         }
         ans += numInteger(rest);
         return ans;
@@ -143,6 +143,8 @@ public class ConvertIntegerToChinese {
     //2147483647
     public static void main(String[] args) {
         System.out.println(convert(Integer.MIN_VALUE));
+        System.out.println(convert(1000000));
+
 
     }
 
