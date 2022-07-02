@@ -19,7 +19,7 @@ public class CoinAim {
         return ways;
     }
 
-    public static int dp(int[] coins, int rest, int index) {
+    public static int dp(int[] coins, int rest) {
         int N = coins.length;
         int[][] dp = new int[N + 1][rest + 1];
         dp[N][0] = 1;
@@ -40,6 +40,6 @@ public class CoinAim {
         int[] coins = {1, 2, 3, 5};
         int aim = 2;
         System.out.print(process(coins, aim, 0));
-        System.out.print(dp(coins, aim, 0));
+        System.out.print(dp(coins, aim));
     }
 }
