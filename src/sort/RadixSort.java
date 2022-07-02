@@ -29,7 +29,7 @@ public class RadixSort {
             //统计当前进制位上数字出现的次数(用count数组替代一次出桶和入桶)
             int[] count = new int[10];
             for (int a : array) {
-                count[getDigitNum(a, radix)]++;
+                count[getDigitNum(a, i)]++;
             }
             //加工count数组，进制radix位上的数字小于等于i的总数量
             for (int index = 1; index < count.length; index++) {
@@ -38,7 +38,7 @@ public class RadixSort {
             //按radix进制位进行排序（需要从原数组的右到左进行遍历）
             int[] temp = new int[array.length];
             for (int index = array.length - 1; index >= 0; index--) {
-                int newIndex = --count[getDigitNum(array[index], radix)];
+                int newIndex = --count[getDigitNum(array[index], i)];
                 temp[newIndex] = array[index];
             }
             //将临时桶中的数倒回原桶
@@ -61,7 +61,7 @@ public class RadixSort {
         System.out.println(getDigit(10));
         System.out.println(getDigitNum(12, 2));
 
-        int[] array = {1, 2, 5, 4, 6, 9, 8, 7};
+        int[] array = {1, 2, 5, 4, 6, 9, 8, 17};
         radixSort(array);
         System.out.println();
     }
