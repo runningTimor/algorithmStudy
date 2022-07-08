@@ -16,7 +16,7 @@ public class Manacher {
         int[] array = new int[manacherStr.length];
         //遍历过的最右回文右边界索引
         int r = -1;
-        //取得最右回文右边界时，圆心对应的索引+1
+        //取得最右回文右边界时圆心对应的索引
         int c = -1;
         int max = 0;
         for (int i = 0; i < manacherStr.length; i++) {
