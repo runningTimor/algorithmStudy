@@ -16,7 +16,7 @@ public class QuickSort {
     //在索引从left到right范围内，把小于最后一个位置的数字放在左侧，等于的数字放在中间，大于的放在右侧
     public static int[] partition(int[] array, int left, int right) {
         //从数组随机选择一个数作为划分依据
-        int selectIndex = (int) (Math.random() * (right - left + 1)) + left;
+        int selectIndex = (int) (Math.random() * (right - left)) + left;
         int selectNum = array[selectIndex];
         int smallRight = left - 1;
         int bigLeft = right + 1;
