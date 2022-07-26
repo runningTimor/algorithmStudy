@@ -1,5 +1,9 @@
 package unsort;
 
+import jdk.nashorn.internal.runtime.RewriteException;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.LinkedList;
 
 /**
@@ -63,10 +67,37 @@ public class SlideWindow {
 
     }
 
+
+    public static int[] getWindowMax(int[] array, int windowSize) {
+        if (array == null || array.length < windowSize) {
+            return null;
+        }
+        //滑动窗口，维护数组的索引值
+        Deque<Integer> deque = new ArrayDeque();
+        int[] res = new int[array.length - windowSize + 1];
+        int index = 0;
+        for (int i = 0; i < array.length; i++) {
+
+            if (deque.peekFirst() == i - windowSize) {
+                deque.removeFirst();
+            }
+            while (!deque.isEmpty() && array[deque.peekLast()] <= array[i]) {
+                deque.removeLast();
+            }
+            deque.add(i);
+            if (i >= windowSize - 1) {
+                res[index++] = array[deque.peekFirst()];
+            }
+
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         int[] array = {4, 3, 5, 4, 3, 3, 6, 7};
         Window window = new Window(array);
         window.getMaxWindow(3);
+        getWindowMax(array,3);
         System.out.print("");
     }
 

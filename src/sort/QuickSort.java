@@ -18,19 +18,19 @@ public class QuickSort {
         //从数组随机选择一个数作为划分依据
         int selectIndex = (int) (Math.random() * (right - left)) + left;
         int selectNum = array[selectIndex];
-        int smallRight = left - 1;
-        int bigLeft = right + 1;
+        int smallRight = left;
+        int bigLeft = right;
         int index = left;
-        while (index < bigLeft) {
+        while (index <= bigLeft) {
             if (array[index] > selectNum) {
-                swap(array, --bigLeft, index);
+                swap(array, bigLeft--, index);
             } else if (array[index] < selectNum) {
-                swap(array, ++smallRight, index++);
+                swap(array, smallRight++, index++);
             } else {
                 index++;
             }
         }
-        return new int[]{smallRight + 1, bigLeft - 1};
+        return new int[]{smallRight, bigLeft};
     }
 
     public static void swap(int[] array, int i, int j) {
@@ -42,7 +42,7 @@ public class QuickSort {
 
     public static void main(String[] args) {
 
-        int[] array = {5, 3, 2, 7, 8,6,5,4,7,8,9};
+        int[] array = {5, 3, 2, 7, 8, 6, 5, 4, 7, 8, 9};
         quickSort(array, 0, array.length - 1);
         System.out.println();
     }

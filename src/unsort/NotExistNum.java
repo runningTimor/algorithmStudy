@@ -15,7 +15,8 @@ public class NotExistNum {
         }
         for (int index = 0; index < arrays.length; index++) {
             if (arrays[index]!=index+1){
-                System.out.println(index+1);
+//                System.out.println(index+1);
+                System.out.println(arrays[index]);
             }
         }
 
@@ -30,7 +31,7 @@ public class NotExistNum {
     }
 
     public static void main(String[] args) {
-        int[] arrays = {1, 3, 3, 5, 4, 6, 7, 8, 9, 4, 5, 6, 2};
+        int[] arrays = {1, 3, 4, 2, 2};
 
         findNotExistNum(arrays);
     }
