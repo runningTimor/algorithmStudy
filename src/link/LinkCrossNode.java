@@ -35,11 +35,11 @@ public class LinkCrossNode {
         int length2 = 0;
         LinkNode current1 = head1;
         LinkNode current2 = head1;
-        while (current1 != null) {
+        while (current1.next != null) {
             current1 = current1.next;
             length1++;
         }
-        while (current2 != null) {
+        while (current2.next != null) {
             current2 = current2.next;
             length2++;
         }
