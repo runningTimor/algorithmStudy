@@ -25,6 +25,7 @@ public class Prim {
             for (Edge edge : node.edges) {
                 if (!edgeSet.contains(edge)) {
                     queue.add(edge);
+                    edgeSet.add(edge);
                 }
             }
             while (!queue.isEmpty()) {
@@ -36,6 +37,7 @@ public class Prim {
                     for (Edge nextEdge : toNode.edges) {
                         if (!edgeSet.contains(edge)) {
                             queue.add(nextEdge);
+                            edgeSet.add(edge);
                         }
                     }
                 }
